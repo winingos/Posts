@@ -74,3 +74,14 @@ example1:
 安装完之后，想使用再想安装ruby，只需在cmder里执行：
 
     choco install ruby
+    
+安装很简单，打开命令行界面，贴入下面一行回车：
+
+```shell
+	@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('http://bit.ly/psChocInstall'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin
+```
+
+用法也简单：
+
+查询程序是否在数据库中：clist < 程序名>
+安装程序：cinst < 程序名>
