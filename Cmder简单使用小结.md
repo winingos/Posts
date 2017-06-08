@@ -30,18 +30,18 @@ Excerpt|Cmder是一款Windows环境下非常简洁美观易用的cmd替代者，
 
 866——俄文
 
-###1、解决中文乱码问题
+### 1、解决中文乱码问题
 把一下几行代码添加到config/aliases文件末尾即可解决中文乱码问题：
 
     l=ls --show-control-chars 
 	la=ls -aF --show-control-chars 
 	ll=ls -alF --show-control-chars
 	ls=ls --show-control-chars -F
-###2、解决文字重叠问题
+### 2、解决文字重叠问题
 `Win + Ait + P` 唤出设置界面 > mian > font > monospce 的勾勾去掉(点两下).
-###3、配置其在win+r中打开
+### 3、配置其在win+r中打开
 把根目录加到系统环境的path变量中即可。
-###4、添加右键
+### 4、添加右键
 可以关注这个[gist](https://gist.github.com/unmric/8067104)。在Cmder根目录新建一个`init.bat`，输入以下代码：
 
     @echo off
@@ -56,7 +56,7 @@ Excerpt|Cmder是一款Windows环境下非常简洁美观易用的cmd替代者，
     @echo off
 	Reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\Background\shell\Cmder" /f
 	pause
-###5、alias设置
+### 5、alias设置
 在 Cmder 的 config 文件夹中有一个叫 aliases 的文件它是专门设置 alias 的。当然它不同于 alias 那么死板, 其中有一个参数 `$*` 它等同于命令参数的其他部分。
 example1:
  ls --color $* 在执行 ls 的时候就等于在他前面添加了 --color.
@@ -64,25 +64,43 @@ example1:
  假设你有一个vps，你可以设置一个快速链接你vps的命令，在config/aliases文件末尾加这个一行即可： 
  
     sshvps=ssh -p 22 username@x.x.x.x
-###6、添加快捷键
+### 6、添加快捷键
 右键 cmder.exe > 创建快捷方式 > 右键快捷方式 > 点击快捷键项 > 按 Ctrl + Alt + T.
 以后按 `Ctrl + Alt + T` 的时候就会运行 Cmder 了.
-###7、[Chocolatey](http://chocolatey.org/)软件包管理系统
+### 7、[Chocolatey](http://chocolatey.org/)软件包管理系统
 安装chocolatey：
-
-    @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
-安装完之后，想使用再想安装ruby，只需在cmder里执行：
-
-    choco install ruby
-    
-安装很简单，打开命令行界面，贴入下面一行回车：
-
 ```shell
 @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('http://bit.ly/psChocInstall'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin
 ```
-
+安装很简单，打开命令行界面，贴入下面一行回车：
 用法也简单：
 ```shell
+choco --help 获取更多
 查询程序是否在数据库中：clist < 程序名>    
 安装程序：cinst < 程序名>
 ```
+### 8. [scoop](http://scoop.sh)软件包管理系统-针对开发工具
+安装scoop需要powershell 3.0以上的版本
+```powershell
+powershell
+Get-Host 查看当前powershell版本
+```
+#### 8.1如果版本过低,需要先对powershell进行升级	
+1)使用cinst  安装.net +ps		
+```shell
+cinst dotnet4.5.1 -y
+cinst powershell
+```
+2)不使用choco 安装  			
+>[安装.NetFramwork 4.0以上版本](http://www.microsoft.com/en-us/download/details.aspx?id=30653)              
+>[安装Windows Management Framework 3.0](http://www.microsoft.com/en-us/download/details.aspx?id=34595)
+(64位win7系统安装Windows6.1-KB2506143-x64.msu，32位win7系统安装Windows6.1-KB2506143-x86.msu)
+
+以上都需要重启系统
+#### 8.2 安装scoop
+```powershell
+set-executionpolicy remotesigned -scope currentuser 设置较低的权限
+iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+```
+然后就可以玩耍了
+
