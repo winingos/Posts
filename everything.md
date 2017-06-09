@@ -1,7 +1,7 @@
 ## 使用everything 搜索文件	
 ### 1.名称模糊搜索 		
 ### 2.使用操作符		
- 1)空格表示 `与`		
+ 1)空格表示 `与`	            	
  2) `|` 表示 `或`
 ### 3.在特定位置搜索
  1)在关键词后添加 `\` ,表示在特定目录下搜索
@@ -18,8 +18,8 @@
 
   2)按时间搜索				
   >dm datemodified 修改日期 `eg:dm:2014/6/17`			
-  >dc datecreated  创建日期						
-  >da dateaccessed 访问日期
+  >dc datecreated  创建日期						                                           
+  >da dateaccessed 访问日期                                                   
 
   3)按文件大小搜索									
   >`size`, 						
